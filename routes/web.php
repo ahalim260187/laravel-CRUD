@@ -39,18 +39,16 @@ Route::post('/job', function (Request $request) {
 });
 
 // Edit Job
-Route::get('/job/{id}/edit', function ($id) {
-    $job = JobListing::findOrFail($id);
+Route::get('/job/{job}/edit', function (JobListing $job) {
     return view('edit-job', compact('job'));
 })->name('edit-job');
 
 // Update Job
-Route::patch('/job/{id}', function (Request $request, $id) {
+Route::patch('/job/{job}', function (Request $request, JobListing $job) {
     $request->validate([
         'job_name' => ['string', 'min:3'],
         'salary' => ['min:5']
     ]);
-    $job = JobListing::findOrFail($id);
     $job->update([
         'name' => $request->job_name,
         'salary' => $request->salary,
@@ -59,16 +57,14 @@ Route::patch('/job/{id}', function (Request $request, $id) {
 })->name('update-job');
 
 // Delete Job
-Route::delete('/job/{id}', function ($id) {
-    $job = JobListing::findOrFail($id);
+Route::delete('/job/{job}', function (JobListing $job) {
     $job->delete();
     return redirect('/job')->with('success', 'Job Deleted successfully!');
 })->name('delete-job');
 
 // Get Single Job
-Route::get('/job/{id}', function ($id) {
-    $job = JobListing::findOrFail($id);
-    return view('job', compact('job'));
+Route::get('/job/{job}', function (JobListing $job) {
+    return view('job', ['job' => $job]);
 })->name('jobs.show');
 
 Route::get('/contact', function () {
