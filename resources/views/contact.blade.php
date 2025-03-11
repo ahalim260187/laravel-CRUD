@@ -1,129 +1,63 @@
-@extends('app')
+<x-layout>
+    <x-slot:heading>
+        Contact Page
+    </x-slot>
+    <h1>Hello from the Contact page </h1>
+</x-layout>
+
+
+{{-- @extends('app')
 @section('content')
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <div class="card w-100" style="max-width: 600px;">
-            <div class="card-header bg-dark text-white text-center">
-                Contact Form
-            </div>
-            <div class="card-body">
-                {{-- <form action="{{ route('contact.submit') }}" method="POST"> --}}
-                <form id="ajax-form">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter your name"
-                            name="name" value="{{ old('name') }}">
-                        <span class="error-name text text-danger"></span>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email"
-                            name="email" value="{{ old('email') }}">
-                        <span class="error-email text text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="subject" class="form-label">Subject</label>
-                        <input type="text" class="form-control" id="subject" placeholder="Enter subject" name="subject"
-                            value="{{ old('subject') }}">
-                        <span class="error-subject text text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" rows="4" placeholder="Enter your message" name="message"
-                            value="{{ old('message') }}"></textarea>
-                        <span class="error-message text text-danger"></span>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Submit</button>
-                </form>
-                <div id="success-message" class="text-success"></div>
-            </div>
-        </div>
-    </div>
-    {{-- <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <!-- Button to trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
-            Add Message
-        </button>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="formModalLabel">Contact Form</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('contact.submit') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name"
-                                name="name">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <form>
+            <div class="space-y-12 sm:space-y-16">
+                <div>
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
+                    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-600">Use a permanent address where you can receive
+                        mail.</p>
+                    <div
+                        class="mt-10 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
+                        <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                name</label>
+                            <div class="mt-2 sm:col-span-2 sm:mt-0">
+                                <input type="text" name="name" id="name" autocomplete="given-name"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email"
-                                name="email">
+                        <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                email</label>
+                            <div class="mt-2 sm:col-span-2 sm:mt-0">
+                                <input type="email" name="email" id="name" autocomplete="given-name"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" class="form-control" id="subject" placeholder="Enter subject"
-                                name="'subject">
+                        <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                            <label for="subject" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                subject</label>
+                            <div class="mt-2 sm:col-span-2 sm:mt-0">
+                                <input type="text" name="subject" id="subject" autocomplete="given-name"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="4" placeholder="Enter your message" name="message"></textarea>
+                        <div>
+                            <label for="comment" class="block text-sm font-medium leading-6 text-gray-900">Add your
+                                comment</label>
+                            <div class="mt-2">
+                                <textarea rows="4" name="comment" id="comment"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Submit</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div> --}}
-@endsection
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#ajax-form').on('submit', function(event) {
-                event.preventDefault(); // Mencegah form dari refresh halaman
 
-                $.ajax({
-                    url: '{{ route('contact.submit') }}',
-                    method: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        // Menampilkan pesan sukses jika tidak ada error
-                        $('#success-message').text(response.success);
-                        $('.text-danger').text(''); // Menghapus pesan error sebelumnya
-                        window.location.href = '{{ route('contact.message') }}';
-                    },
-                    error: function(xhr) {
-                        // console.log(xhr); // Tambahkan ini untuk melihat respons
-                        if (xhr.responseJSON && xhr.responseJSON.errors) {
-                            var errors = xhr.responseJSON.errors;
-                            $('.text-danger').text(''); // Menghapus pesan error sebelumnya
-                            if (errors.name) {
-                                $('.error-name').text(errors.name[0]); // Menampilkan error name
-                            }
-                            if (errors.email) {
-                                $('.error-email').text(errors.email[
-                                    0]); // Menampilkan error email
-                            }
-                            if (errors.subject) {
-                                $('.error-subject').text(errors.subject[0]);
-                            }
-                            if (errors.message) {
-                                $('.error-message').text(errors.message[0]);
-                            }
-                        } else {
-                            console.log('Unexpected error response:', xhr);
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-@endpush
+            <div class="mt-6 flex items-center justify-end gap-x-6">
+                <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+                <button type="submit"
+                    class="inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+            </div>
+        </form>
+    </div>
+@endsection --}}

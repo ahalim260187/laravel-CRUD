@@ -20,7 +20,7 @@ class ContactMessageRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:5', 'max:32'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:contacts,email'],
             'subject' => ['required', 'max:500'],
             'message' => ['required', 'max:5000']
         ];
