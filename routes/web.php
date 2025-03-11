@@ -14,14 +14,17 @@ Route::get('/', function () {
     return view('home', ['greeting' => 'Hello']);
 });
 
-//Jobs Route
-Route::get('/job', [JobController::class, 'index'])->name('jobs');
-Route::get('/job/create', [JobController::class, 'create']);
-Route::post('/job', [JobController::class, 'store']);
-Route::get('/job/{job}/edit', [JobController::class, 'edit'])->name('edit-job');
-Route::patch('/job/{job}', [JobController::class, 'update'])->name('update-job');
-Route::delete('/job/{job}', [JobController::class, 'delete'])->name('delete-job');
-Route::get('/job/{job}', [JobController::class, 'show'])->name('jobs.show');
+//Jobs Route Grup
+Route::controller(JobController::class)->group(function () {
+    Route::get('/job', 'index')->name('jobs');
+    Route::get('/job/create', 'create');
+    Route::post('/job', 'store');
+    Route::get('/job/{job}/edit', 'edit')->name('edit-job');
+    Route::patch('/job/{job}', 'update')->name('update-job');
+    Route::delete('/job/{job}', 'delete')->name('delete-job');
+    Route::get('/job/{job}', 'show')->name('jobs.show');
+});
+
 
 Route::get('/contact', function () {
     return view('contact');
