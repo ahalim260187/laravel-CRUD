@@ -4,6 +4,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FileUploudController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TestingController;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
@@ -25,6 +27,14 @@ Route::controller(JobController::class)->group(function () {
     Route::get('/job/{job}', 'show')->name('jobs.show');
 });
 
+// REGISTER NEW USER
+Route::get('/register', [RegisterUserController::class, 'create']);
+Route::post('/register', [RegisterUserController::class, 'store']);
+
+// Login User
+Route::get('/login', [SessionController::class, 'create']);
+Route::post('/login', [SessionController::class, 'store']);
+Route::post('/logout', [SessionController::class, 'destroy']);
 
 Route::get('/contact', function () {
     return view('contact');
