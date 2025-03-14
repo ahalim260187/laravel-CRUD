@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Blog;
+use App\Models\Employe;
 use App\Models\JobListing;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         JobListing::factory(50)->create();
-        User::factory(35)->create();
+        User::factory(10)->create();
+        Employe::factory(50)->create();
     }
 }
