@@ -35,12 +35,16 @@
                 </div>
             </div>
         </div>
-
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm/6 font-semibold text-gray-900">Cancel</button>
-            <button type="submit"
-                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
-        </div>
+        <x-action-button type="submit" color="purple">
+            Save
+        </x-action-button>
     </form>
-
+    <form action="{{ route('delete-job', $job->id) }}" method="POST" class="mt-6">
+            @csrf
+            @method('DELETE')
+            <x-action-button type="button" href="{{ route('delete-job', $job->id) }}" color="red"
+                             onclick="return confirm('Are you sure you want to delete this job?');">
+                Delete
+            </x-action-button>
+        </form>
 </x-layout>

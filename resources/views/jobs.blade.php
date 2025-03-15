@@ -13,20 +13,7 @@
             <li style="padding: 10px; background-color: cornsilk; margin:10px; border-radius: 50px"> <a
                     href="{{ route('jobs.show', [$job['id']]) }}"><strong>{{ $job['name'] }}</strong> : Salary :
                     {{ $job['salary'] }}</a>
-                <div>User : {{ $job->user->first_name }} {{ $job->user->last_name }}</div>
-                <div class="mt-6 flex items-center justify-end gap-x-6">
-                    <x-action-button href="{{ route('edit-job', $job->id) }}" color="purple">
-                        Edit
-                    </x-action-button>
-                    <form action="{{ route('delete-job', $job->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <x-action-button type="button" href="{{ route('delete-job', $job->id) }}" color="red"
-                            onclick="return confirm('Are you sure you want to delete this job?');">
-                            Delete
-                        </x-action-button>
-                    </form>
-                </div>
+                <div>Employer Of : {{ $job->employer->name }}</div>
             </li>
         @endforeach
     </ul>

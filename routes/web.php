@@ -19,11 +19,11 @@ Route::get('/', function () {
 //Jobs Route Grup
 Route::controller(JobController::class)->group(function () {
     Route::get('/job', 'index')->name('jobs');
-    Route::get('/job/create', 'create');
-    Route::post('/job', 'store');
-    Route::get('/job/{job}/edit', 'edit')->name('edit-job');
-    Route::patch('/job/{job}', 'update')->name('update-job');
-    Route::delete('/job/{job}', 'delete')->name('delete-job');
+    Route::get('/job/create', 'create')->middleware('auth');
+    Route::post('/job', 'store')->middleware('auth');
+    Route::get('/job/{job}/edit', 'edit')->name('edit-job')->middleware('auth')->can('edit', 'job');
+    Route::patch('/job/{job}', 'update')->name('update-job')->middleware('auth')->can('edit', 'job');
+    Route::delete('/job/{job}', 'delete')->name('delete-job')->middleware('auth')->can('edit', 'job');
     Route::get('/job/{job}', 'show')->name('jobs.show');
 });
 
@@ -32,7 +32,7 @@ Route::get('/register', [RegisterUserController::class, 'create']);
 Route::post('/register', [RegisterUserController::class, 'store']);
 
 // Login User
-Route::get('/login', [SessionController::class, 'create']);
+Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
 

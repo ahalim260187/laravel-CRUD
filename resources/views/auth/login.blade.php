@@ -2,6 +2,11 @@
     <x-slot:heading>
         Log In
     </x-slot>
+    @if (session('error'))
+        <div class="bg-green-100 text-green-700 p-4 rounded">
+            {{ session('error') }}
+        </div>
+    @endif
     <form method="post" action="/login">
         @csrf
         <div class="space-y-12">

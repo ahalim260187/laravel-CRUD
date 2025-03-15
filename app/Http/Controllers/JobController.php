@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobListing;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
     public function index()
     {
-        $jobs = JobListing::with('user')->latest()->simplePaginate(5);
+        $jobs = JobListing::with('employer')->latest()->simplePaginate(5);
+//        dd($jobs);
         return view('jobs', compact('jobs'));
     }
     public function create()
@@ -25,7 +27,7 @@ class JobController extends Controller
         JobListing::create([
             'name' => $request->job_name,
             'salary' => $request->salary,
-            'user_id' => 2
+            'employe_id' => 2
         ]);
         return redirect('/job')->with('success', 'Job Saved successfully!');
     }

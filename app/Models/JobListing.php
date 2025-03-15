@@ -11,8 +11,8 @@ class JobListing extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function user()
+    public function employer()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Employe::class, 'employe_id');
     }
 }

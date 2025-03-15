@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+//        \Illuminate\Support\Facades\Gate::define('edit-job', function(\App\Models\User $user, \App\Models\JobListing $job){
+//            return $job->employer->user->is($user);
+//        });
     }
 }
