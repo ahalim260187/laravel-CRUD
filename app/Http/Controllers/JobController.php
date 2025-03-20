@@ -32,7 +32,7 @@ class JobController extends Controller
             'employe_id' => 2
         ]);
 
-        Mail::to($job->employer->user)->send(new JobPosted($job));
+        Mail::to($job->employer->user)->queue(new JobPosted($job));
         return redirect('/job')->with('success', 'Job Saved successfully!');
     }
     public function show(JobListing $job)
