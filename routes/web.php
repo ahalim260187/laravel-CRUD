@@ -7,10 +7,13 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TestingController;
+use App\Mail\JobPosted;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('home', ['greeting' => 'Hello']);

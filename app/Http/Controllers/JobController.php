@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\JobPosted;
 use App\Models\JobListing;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
     public function index()
     {
         $jobs = JobListing::with('employer')->latest()->simplePaginate(5);
-//        dd($jobs);
+        //        dd($jobs);
         return view('jobs', compact('jobs'));
     }
     public function create()
@@ -24,11 +26,13 @@ class JobController extends Controller
             'job_name' => ['string', 'min:3'],
             'salary' => ['min:5']
         ]);
-        JobListing::create([
+        $job = JobListing::create([
             'name' => $request->job_name,
             'salary' => $request->salary,
             'employe_id' => 2
         ]);
+
+        Mail::to($job->employer->user)->send(new JobPosted($job));
         return redirect('/job')->with('success', 'Job Saved successfully!');
     }
     public function show(JobListing $job)
