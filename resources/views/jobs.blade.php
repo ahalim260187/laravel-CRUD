@@ -13,7 +13,7 @@
             <li style="padding: 10px; background-color: cornsilk; margin:10px; border-radius: 50px"> <a
                     href="{{ route('jobs.show', [$job['id']]) }}"><strong>{{ $job['name'] }}</strong> : Salary :
                     {{ $job['salary'] }}</a>
-                <div>Employer Of : {{ $job->employer->name }}</div>
+                <div class="text-laracast">Employer Of : {{ $job->employer->name }}</div>
             </li>
         @endforeach
     </ul>
